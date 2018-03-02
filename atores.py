@@ -142,8 +142,9 @@ class Passaro(Ator):
         # alcance_horizontal = velocidade * math.cos(angulo) * tempo # x é por aí?
         # altura_max = velocidade * math.sin(Angulo) * GRAVIDADE # y é por aí?
 
-        if self.status == DESTRUIDO:
-            return ultima posicao calculada
+        #if self.status == DESTRUIDO:
+        #    return ultima posicao calculada
+
         return 1, 1
 
 
