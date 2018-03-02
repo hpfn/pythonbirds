@@ -59,10 +59,10 @@ class Ator():
                 self.status = DESTRUIDO
                 outro_ator.status = DESTRUIDO
             else:
-                lado = intervalo * 2
+                limite = intervalo * 2
                 d = ((outro_ator.x - self.x) ** 2) + ((outro_ator.y - self.y) ** 2)
                 d = math.sqrt(d)
-                if d < lado:
+                if d < limite:
                     self.status = DESTRUIDO
                     outro_ator.status = DESTRUIDO
 
