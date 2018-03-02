@@ -129,6 +129,21 @@ class Passaro(Ator):
         :param tempo: tempo de jogo a ser calculada a posição
         :return: posição x, y
         """
+        if not self._tempo_de_lancamento and not self._angulo_de_lancamento:
+            return self._x_inicial, self._y_inicial
+
+        # componente vertical -> y
+        # componente horizontal -> x
+        # self.velocidade_escalar
+        # self._angulo_de_lancamento math.cos() horziontal,   math.sin() altura max, vertical
+        # GRAVIDADE
+        # tempo
+        #
+        # alcance_horizontal = velocidade * math.cos(angulo) * tempo # x é por aí?
+        # altura_max = velocidade * math.sin(Angulo) * GRAVIDADE # y é por aí?
+
+        if self.status == DESTRUIDO:
+            return ultima posicao calculada
         return 1, 1
 
 
