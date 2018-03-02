@@ -38,7 +38,9 @@ class Ator():
         :param tempo: o tempo do jogo
         :return: posição x, y do ator
         """
-        return 1, 1
+        if tempo == 0:
+            return 0, 0
+        return self.x * (tempo/10), self.y * (tempo/10)
 
     def colidir(self, outro_ator, intervalo=1):
         """
@@ -52,8 +54,18 @@ class Ator():
         :param intervalo: Intervalo a ser considerado
         :return:
         """
-        pass
+        lado = intervalo * 2
+        d = ((outro_ator.x - self.x) ** 2) + ((outro_ator.y - self.y) ** 2)
+        d = math.sqrt(d)
 
+        if self.status == ATIVO and outro_ator.status == ATIVO:
+            if self.x == outro_ator.x and self.y == outro_ator.y:
+                 self.status = DESTRUIDO
+                 outro_ator.status = DESTRUIDO
+
+            elif d < lado:
+                self.status = DESTRUIDO
+                outro_ator.status = DESTRUIDO
 
 
 class Obstaculo(Ator):
@@ -101,7 +113,8 @@ class Passaro(Ator):
         o status dos Passaro deve ser alterado para destruido, bem como o seu caracter
 
         """
-        pass
+        if self.y <= 0:
+            self.status = DESTRUIDO
 
     def calcular_posicao(self, tempo):
         """
@@ -129,7 +142,10 @@ class Passaro(Ator):
         :param tempo_de_lancamento:
         :return:
         """
-        pass
+
+        self._tempo_de_lancamento = tempo_de_lancamento
+        self._angulo_de_lancamento = math.radians(angulo)  # radianos
+
 
 
 class PassaroAmarelo(Passaro):

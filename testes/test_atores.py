@@ -148,6 +148,8 @@ class ObstaculoTestes(TestCase):
     """
     def teste_status(self):
         obstaculo = Obstaculo()
+        obstaculo._caracter_ativo = 'O'
+        obstaculo._caracter_destruido = ' '
         self.assertEqual('O', obstaculo.caracter())
         outro_ator_na_mesma_posicao = Ator()
         obstaculo.colidir(outro_ator_na_mesma_posicao)
@@ -160,6 +162,8 @@ class PorcoTestes(TestCase):
     """
     def teste_status(self):
         porco = Porco()
+        porco._caracter_ativo = '@'
+        porco._caracter_destruido = '+'
         self.assertEqual('@', porco.caracter())
         outro_ator_na_mesma_posicao = Ator()
         porco.colidir(outro_ator_na_mesma_posicao)
@@ -197,6 +201,8 @@ class PassaroVermelhoTests(PassaroBaseTests):
 
     def teste_status(self):
         passaro_vermelho = PassaroVermelho(1, 1)
+        passaro_vermelho._caracter_ativo = 'V'
+        passaro_vermelho._caracter_destruido = 'v'
         self.assertEqual('V', passaro_vermelho.caracter())
         outro_ator_na_mesma_posicao = Ator()
         passaro_vermelho.colidir(outro_ator_na_mesma_posicao)
@@ -249,6 +255,8 @@ class PassaroAmareloTests(PassaroBaseTests):
 
     def teste_status(self):
         passaro_amarelo = PassaroAmarelo(1, 1)
+        passaro_amarelo._caracter_ativo = 'A'
+        passaro_amarelo._caracter_destruido = 'a'
         self.assertEqual('A', passaro_amarelo.caracter())
         outro_ator_na_mesma_posicao = Ator()
         passaro_amarelo.colidir(outro_ator_na_mesma_posicao)
