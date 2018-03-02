@@ -54,18 +54,17 @@ class Ator():
         :param intervalo: Intervalo a ser considerado
         :return:
         """
-        lado = intervalo * 2
-        d = ((outro_ator.x - self.x) ** 2) + ((outro_ator.y - self.y) ** 2)
-        d = math.sqrt(d)
-
         if self.status == ATIVO and outro_ator.status == ATIVO:
             if self.x == outro_ator.x and self.y == outro_ator.y:
-                 self.status = DESTRUIDO
-                 outro_ator.status = DESTRUIDO
-
-            elif d < lado:
                 self.status = DESTRUIDO
                 outro_ator.status = DESTRUIDO
+            else:
+                lado = intervalo * 2
+                d = ((outro_ator.x - self.x) ** 2) + ((outro_ator.y - self.y) ** 2)
+                d = math.sqrt(d)
+                if d < lado:
+                    self.status = DESTRUIDO
+                    outro_ator.status = DESTRUIDO
 
 
 class Obstaculo(Ator):
