@@ -80,7 +80,7 @@ class DuploLancamentoExcecao(Exception):
 
 
 class Passaro(Ator):
-    velocidade_escalar = 10
+    velocidade_escalar = 30
 
     def __init__(self, x=0, y=0):
         """
@@ -104,6 +104,9 @@ class Passaro(Ator):
 
         :return: booleano
         """
+        if self._tempo_de_lancamento is None and self._angulo_de_lancamento is None:
+            return False
+
         return True
 
     def colidir_com_chao(self):
@@ -129,24 +132,27 @@ class Passaro(Ator):
         :param tempo: tempo de jogo a ser calculada a posição
         :return: posição x, y
         """
-        if not self._tempo_de_lancamento and not self._angulo_de_lancamento:
+        if not self.foi_lancado():
+            print('nao lancado')
             return self._x_inicial, self._y_inicial
+
+        if self.status == DESTRUIDO:
+            print('destruido')
+            return self.x, self.y
 
         # componente vertical -> y
         # componente horizontal -> x
-        # self.velocidade_escalar
-        # self._angulo_de_lancamento math.cos() horziontal,   math.sin() altura max, vertical
-        # GRAVIDADE
-        # tempo
-        #
-        # alcance_horizontal = velocidade * math.cos(angulo) * tempo # x é por aí?
-        # altura_max = velocidade * math.sin(Angulo) * GRAVIDADE # y é por aí?
 
-        #if self.status == DESTRUIDO:
-        #    return ultima posicao calculada
+        tempo = tempo / 10
 
-        return 1, 1
+        # alcance_horizontal
+        d = math.cos(self._angulo_de_lancamento) * tempo
+        self.x += d
 
+        # vertical considerando subida
+        self.y = (self.velocidade_escalar * tempo) - (0.5 * GRAVIDADE * (tempo ** 2))
+
+        return self.x, self.y
 
     def lancar(self, angulo, tempo_de_lancamento):
         """
@@ -160,7 +166,6 @@ class Passaro(Ator):
 
         self._tempo_de_lancamento = tempo_de_lancamento
         self._angulo_de_lancamento = math.radians(angulo)  # radianos
-
 
 
 class PassaroAmarelo(Passaro):
