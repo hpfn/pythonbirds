@@ -148,8 +148,8 @@ class ObstaculoTestes(TestCase):
     """
     def teste_status(self):
         obstaculo = Obstaculo()
-        obstaculo._caracter_ativo = 'O'
-        obstaculo._caracter_destruido = ' '
+        #obstaculo._caracter_ativo = 'O'
+        #obstaculo._caracter_destruido = ' '
         self.assertEqual('O', obstaculo.caracter())
         outro_ator_na_mesma_posicao = Ator()
         obstaculo.colidir(outro_ator_na_mesma_posicao)
