@@ -38,8 +38,8 @@ class Ator():
         :param tempo: o tempo do jogo
         :return: posição x, y do ator
         """
-        if tempo == 0:
-            return 0, 0
+        #if tempo == 0:
+        #    return 0, 0
 
         return self.x, self.y  # tempo/10, tempo/10
 
