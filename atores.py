@@ -174,4 +174,4 @@ class PassaroAmarelo(Passaro):
 
 
 class PassaroVermelho(Passaro):
-    pass
+    velocidade_escalar = 20
