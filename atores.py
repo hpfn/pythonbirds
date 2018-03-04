@@ -43,6 +43,15 @@ class Ator():
 
         return self.x, self.y  # tempo/10, tempo/10
 
+    def _mesma_posicao(self, outro_ator):
+        return self.x == outro_ator.x and self.y == outro_ator.y
+
+    def _intersecao_de_atores(self, outro_ator, intervalo):
+        limite = intervalo * 2
+        d = ((outro_ator.x - self.x) ** 2) + ((outro_ator.y - self.y) ** 2)
+        d = math.sqrt(d)
+        return d < limite
+
     def colidir(self, outro_ator, intervalo=1):
         """
         Método que executa lógica de colisão entre dois atores.
@@ -56,16 +65,9 @@ class Ator():
         :return:
         """
         if self.status == ATIVO and outro_ator.status == ATIVO:
-            if self.x == outro_ator.x and self.y == outro_ator.y:
+            if self._mesma_posicao(outro_ator) or self._intersecao_de_atores(outro_ator, intervalo):
                 self.status = DESTRUIDO
                 outro_ator.status = DESTRUIDO
-            else:
-                limite = intervalo * 2
-                d = ((outro_ator.x - self.x) ** 2) + ((outro_ator.y - self.y) ** 2)
-                d = math.sqrt(d)
-                if d < limite:
-                    self.status = DESTRUIDO
-                    outro_ator.status = DESTRUIDO
 
 
 class Obstaculo(Ator):
