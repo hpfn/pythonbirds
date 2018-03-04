@@ -137,10 +137,10 @@ class Passaro(Ator):
         :param tempo: tempo de jogo a ser calculada a posição
         :return: posição x, y
         """
-        if not self.foi_lancado():
-            # print('nao lancado')
-            self.x = self._x_inicial
-            self.y = self._y_inicial
+        #if not self.foi_lancado():
+        #    # print('nao lancado')
+        #    self.x = self._x_inicial
+        #    self.y = self._y_inicial
             # return self._x_inicial, self._y_inicial
 
         #if self.status == DESTRUIDO:
