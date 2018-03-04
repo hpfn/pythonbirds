@@ -40,7 +40,8 @@ class Ator():
         """
         if tempo == 0:
             return 0, 0
-        return self.x * (tempo/10), self.y * (tempo/10)
+
+        return self.x, self.y  # tempo/10, tempo/10
 
     def colidir(self, outro_ator, intervalo=1):
         """
