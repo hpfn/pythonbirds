@@ -143,23 +143,22 @@ class Passaro(Ator):
             self.y = self._y_inicial
             # return self._x_inicial, self._y_inicial
 
-        if self.status == DESTRUIDO:
-            print('destruido')
-            return self.x, self.y
+        #if self.status == DESTRUIDO:
+        #    print('destruido')
+        #    return self.x, self.y
 
         # componente vertical -> y
         # componente horizontal -> x
 
-        tempo = tempo - self._tempo_de_lancamento
+        if self.status == ATIVO:
+            tempo = tempo - self._tempo_de_lancamento
 
-        # alcance_horizontal
-        self.x = self._x_inicial + math.cos(self._angulo_de_lancamento) * tempo * self.velocidade_escalar
-
-        # vertical considerando subida
-        self.y = (self._y_inicial +
-             self.velocidade_escalar * tempo * math.sin(self._angulo_de_lancamento) -
-             0.5 * GRAVIDADE * tempo ** 2)
-
+            # alcance_horizontal
+            self.x = self._x_inicial + math.cos(self._angulo_de_lancamento) * tempo * self.velocidade_escalar
+            # vertical considerando subida
+            self.y = (self._y_inicial +
+                      self.velocidade_escalar * tempo * math.sin(self._angulo_de_lancamento) -
+                      0.5 * GRAVIDADE * tempo ** 2)
         return self.x, self.y
 
     def lancar(self, angulo, tempo_de_lancamento):
