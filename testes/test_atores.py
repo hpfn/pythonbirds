@@ -162,8 +162,8 @@ class PorcoTestes(TestCase):
     """
     def teste_status(self):
         porco = Porco()
-        porco._caracter_ativo = '@'
-        porco._caracter_destruido = '+'
+        # porco._caracter_ativo = '@'
+        # porco._caracter_destruido = '+'
         self.assertEqual('@', porco.caracter())
         outro_ator_na_mesma_posicao = Ator()
         porco.colidir(outro_ator_na_mesma_posicao)
