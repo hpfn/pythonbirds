@@ -255,8 +255,8 @@ class PassaroAmareloTests(PassaroBaseTests):
 
     def teste_status(self):
         passaro_amarelo = PassaroAmarelo(1, 1)
-        passaro_amarelo._caracter_ativo = 'A'
-        passaro_amarelo._caracter_destruido = 'a'
+        # passaro_amarelo._caracter_ativo = 'A'
+        # passaro_amarelo._caracter_destruido = 'a'
         self.assertEqual('A', passaro_amarelo.caracter())
         outro_ator_na_mesma_posicao = Ator()
         passaro_amarelo.colidir(outro_ator_na_mesma_posicao)

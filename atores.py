@@ -172,6 +172,9 @@ class Passaro(Ator):
 
 
 class PassaroAmarelo(Passaro):
+    _caracter_ativo = 'A'
+    _caracter_destruido = 'a'
+
     pass
 
 
