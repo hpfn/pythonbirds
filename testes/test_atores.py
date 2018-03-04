@@ -201,8 +201,8 @@ class PassaroVermelhoTests(PassaroBaseTests):
 
     def teste_status(self):
         passaro_vermelho = PassaroVermelho(1, 1)
-        passaro_vermelho._caracter_ativo = 'V'
-        passaro_vermelho._caracter_destruido = 'v'
+        # passaro_vermelho._caracter_ativo = 'V'
+        # passaro_vermelho._caracter_destruido = 'v'
         self.assertEqual('V', passaro_vermelho.caracter())
         outro_ator_na_mesma_posicao = Ator()
         passaro_vermelho.colidir(outro_ator_na_mesma_posicao)
