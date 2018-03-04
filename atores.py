@@ -124,7 +124,8 @@ class Passaro(Ator):
             self.status = DESTRUIDO
 
     def _posicao_de_x(self, tempo):
-        return self._x_inicial + math.cos(self._angulo_de_lancamento) * tempo * self.velocidade_escalar
+        return (self._x_inicial +
+                math.cos(self._angulo_de_lancamento) * tempo * self.velocidade_escalar)
 
     def _posicao_de_y(self, tempo):
         """ considerando subida """
