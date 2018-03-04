@@ -123,6 +123,15 @@ class Passaro(Ator):
         if self.y <= 0:
             self.status = DESTRUIDO
 
+    def _posicao_de_x(self, tempo):
+        return self._x_inicial + math.cos(self._angulo_de_lancamento) * tempo * self.velocidade_escalar
+
+    def _posicao_de_y(self, tempo):
+        """ considerando subida """
+        return (self._y_inicial +
+                self.velocidade_escalar * tempo * math.sin(self._angulo_de_lancamento) -
+                0.5 * GRAVIDADE * tempo ** 2)
+
     def calcular_posicao(self, tempo):
         """
         Método que cálcula a posição do passaro de acordo com o tempo.
@@ -137,28 +146,13 @@ class Passaro(Ator):
         :param tempo: tempo de jogo a ser calculada a posição
         :return: posição x, y
         """
-        #if not self.foi_lancado():
-        #    # print('nao lancado')
-        #    self.x = self._x_inicial
-        #    self.y = self._y_inicial
-            # return self._x_inicial, self._y_inicial
-
-        #if self.status == DESTRUIDO:
-        #    print('destruido')
-        #    return self.x, self.y
-
-        # componente vertical -> y
-        # componente horizontal -> x
-
         if self.status == ATIVO:
             tempo = tempo - self._tempo_de_lancamento
+            # lançamento horizontal
+            self.x = self._posicao_de_x(tempo)
+            # lançamento vertical
+            self.y = self._posicao_de_y(tempo)
 
-            # alcance_horizontal
-            self.x = self._x_inicial + math.cos(self._angulo_de_lancamento) * tempo * self.velocidade_escalar
-            # vertical considerando subida
-            self.y = (self._y_inicial +
-                      self.velocidade_escalar * tempo * math.sin(self._angulo_de_lancamento) -
-                      0.5 * GRAVIDADE * tempo ** 2)
         return self.x, self.y
 
     def lancar(self, angulo, tempo_de_lancamento):
