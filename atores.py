@@ -143,14 +143,15 @@ class Passaro(Ator):
         # componente vertical -> y
         # componente horizontal -> x
 
-        tempo = tempo / 10
+        tempo = tempo - self._tempo_de_lancamento
 
         # alcance_horizontal
-        d = math.cos(self._angulo_de_lancamento) * tempo
-        self.x += d
+        self.x = self._x_inicial + math.cos(self._angulo_de_lancamento) * tempo * self.velocidade_escalar
 
         # vertical considerando subida
-        self.y = (self.velocidade_escalar * tempo) - (0.5 * GRAVIDADE * (tempo ** 2))
+        self.y = (self._y_inicial +
+             self.velocidade_escalar * tempo * math.sin(self._angulo_de_lancamento) -
+             0.5 * GRAVIDADE * tempo ** 2)
 
         return self.x, self.y
 
