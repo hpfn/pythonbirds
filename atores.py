@@ -138,8 +138,10 @@ class Passaro(Ator):
         :return: posição x, y
         """
         if not self.foi_lancado():
-            print('nao lancado')
-            return self._x_inicial, self._y_inicial
+            # print('nao lancado')
+            self.x = self._x_inicial
+            self.y = self._y_inicial
+            # return self._x_inicial, self._y_inicial
 
         if self.status == DESTRUIDO:
             print('destruido')
