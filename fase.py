@@ -78,10 +78,13 @@ class Fase():
 
         :return:
         """
-
         for passaro, porco in zip(self._passaros, self._porcos):
             if porco.status == ATIVO and passaro.status == ATIVO:
                 return EM_ANDAMENTO
+
+        for passaro, porco in zip(self._passaros, self._porcos):
+            passaro.colidir(porco, passaro.intervalo_colisao)
+
 
         for porco in self._porcos:
             if porco.status == ATIVO:
