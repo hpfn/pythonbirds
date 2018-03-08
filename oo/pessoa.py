@@ -23,9 +23,12 @@ class Pessoa:
 class Homem(Pessoa):
     pass
 
+class Mutante(Pessoa):
+    olhos = 3
+
 
 if __name__ == '__main__':
-    renzo = Homem(nome='Renzo', idade=30)
+    renzo = Mutante(nome='Renzo', idade=30)
     luciano = Pessoa(renzo, nome='Luciano')
 
     print(Pessoa.cumprimentar(luciano))
@@ -45,7 +48,6 @@ if __name__ == '__main__':
     print(renzo.__dict__)
     print(f'antes da mudança luciano.olhos - {luciano.olhos}')
     # da classe - vai todas as instancias
-    Pessoa.olhos = 3
     print(Pessoa.olhos)
     print(luciano.olhos)
     print(renzo.olhos)
@@ -56,5 +58,6 @@ if __name__ == '__main__':
     print(isinstance(luciano, Homem))
     print(isinstance(renzo, Pessoa))
     print(isinstance(renzo, Homem))
+    print(renzo.olhos)
 
 
