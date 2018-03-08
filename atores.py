@@ -147,7 +147,7 @@ class Passaro(Ator):
         :param tempo: tempo de jogo a ser calculada a posição
         :return: posição x, y
         """
-        if self.status == ATIVO and self.foi_lancado():
+        if self.foi_lancado() and self.status == ATIVO:
             tempo = tempo - self._tempo_de_lancamento
             # lançamento horizontal
             self.x = self._posicao_de_x(tempo)
