@@ -127,15 +127,23 @@ class Passaro(Ator):
         if self.y <= 0:
             self.status = DESTRUIDO
 
-    def _posicao_de_x(self, tempo):
-        return (self._x_inicial +
-                math.cos(self._angulo_de_lancamento) * tempo * self.velocidade_escalar)
+    def _posicao_de_x(self, delta_tempo):
+        # return (self._x_inicial +
+        #        math.cos(self._angulo_de_lancamento) * tempo * self.velocidade_escalar)
+        x_atual = self._x_inicial
+        x_atual += math.cos(self._angulo_de_lancamento) * delta_tempo * self.velocidade_escalar
+        self.x = x_atual
 
-    def _posicao_de_y(self, tempo):
+    def _posicao_de_y(self, delta_tempo):
         """ considerando subida """
-        return (self._y_inicial +
-                self.velocidade_escalar * tempo * math.sin(self._angulo_de_lancamento) -
-                0.5 * GRAVIDADE * tempo ** 2)
+        # return (self._y_inicial +
+        #        self.velocidade_escalar * tempo * math.sin(self._angulo_de_lancamento) -
+        #        0.5 * GRAVIDADE * tempo ** 2)
+        y_atual = self._y_inicial
+        y_atual += self.velocidade_escalar * delta_tempo * math.sin(self._angulo_de_lancamento)
+        y_atual -= 0.5 * GRAVIDADE * delta_tempo ** 2
+        self.y = y_atual
+
 
     def calcular_posicao(self, tempo):
         """
@@ -152,11 +160,13 @@ class Passaro(Ator):
         :return: posição x, y
         """
         if self.foi_lancado() and self.status == ATIVO:
-            tempo = tempo - self._tempo_de_lancamento
+            delta_tempo = tempo - self._tempo_de_lancamento
             # lançamento horizontal
-            self.x = self._posicao_de_x(tempo)
+            # self.x = self._posicao_de_x(delta_tempo)
+            self._posicao_de_x(delta_tempo)
             # lançamento vertical
-            self.y = self._posicao_de_y(tempo)
+            #self.y = self._posicao_de_y(tempo)
+            self._posicao_de_y(delta_tempo)
 
         return self.x, self.y
 
