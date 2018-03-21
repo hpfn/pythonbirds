@@ -168,7 +168,8 @@ class Passaro(Ator):
             #self.y = self._posicao_de_y(tempo)
             self._posicao_de_y(delta_tempo)
 
-        return self.x, self.y
+        return super().calcular_posicao(tempo)
+        # return self.x, self.y
 
     def lancar(self, angulo, tempo_de_lancamento):
         """
